@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy-950 text-slate-100 font-sans antialiased;
+    background-color: #040d18;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .input-field {
+    @apply w-full bg-navy-800 border border-navy-600 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-500
+           focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-slate-400 mb-1.5;
+  }
+  
+  .section-card {
+    @apply bg-navy-900 border border-navy-700 rounded-xl p-6;
+  }
+  
+  .btn-primary {
+    @apply bg-teal-500 hover:bg-teal-400 text-navy-950 font-semibold px-6 py-3 rounded-lg
+           transition-all duration-200 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-secondary {
+    @apply bg-navy-700 hover:bg-navy-600 text-slate-200 font-medium px-6 py-3 rounded-lg
+           transition-all duration-200 flex items-center gap-2;
+  }
+
+  .metric-card {
+    @apply bg-navy-800 border border-navy-600 rounded-xl p-5;
+  }
+
+  .tag {
+    @apply inline-flex items-center gap-1 text-xs font-mono bg-navy-700 text-teal-400 px-2.5 py-1 rounded-md border border-navy-600;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #040d18;
+}
+::-webkit-scrollbar-thumb {
+  background: #143459;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1a4070;
+}
+
+/* Recharts overrides */
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+.recharts-default-tooltip {
+  background: #0b1f35 !important;
+  border: 1px solid #143459 !important;
+  border-radius: 8px !important;
+}
+.recharts-tooltip-label {
+  color: #94a3b8 !important;
+}
