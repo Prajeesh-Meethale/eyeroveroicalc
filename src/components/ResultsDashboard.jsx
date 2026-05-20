@@ -11,10 +11,10 @@ import BreakevenChart from './BreakevenChart';
 function MetricValue({ label, diving, rov, market, highlight }) {
   const sym = MARKETS[market]?.symbol;
   return (
-    <div className={`grid grid-cols-3 items-center py-2.5 border-b border-navy-700/50 ${highlight ? 'bg-teal-900/10 -mx-5 px-5 rounded' : ''}`}>
+    <div className={`grid grid-cols-3 items-center py-2.5 border-b border-slate-700/50 ${highlight ? 'bg-cyan-900/10 -mx-5 px-5 rounded' : ''}`}>
       <span className="text-xs text-slate-400 col-span-1">{label}</span>
       <span className="text-xs font-mono text-amber-400 text-right">{formatCurrency(diving, market)}</span>
-      <span className="text-xs font-mono text-teal-400 text-right">{formatCurrency(rov, market)}</span>
+      <span className="text-xs font-mono text-cyan-400 text-right">{formatCurrency(rov, market)}</span>
     </div>
   );
 }
@@ -27,7 +27,7 @@ function ScenarioBar({ label, value, max, color, market }) {
         <span className="text-slate-400">{label}</span>
         <span className={`font-mono font-semibold`} style={{ color }}>{formatCurrency(value, market)}</span>
       </div>
-      <div className="h-2 bg-navy-700 rounded-full overflow-hidden">
+      <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
         <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
       </div>
     </div>
@@ -51,12 +51,12 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="section-card text-center">
           <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Cost Saving / Inspection</p>
-          <p className="text-3xl font-bold text-teal-400 font-mono">{formatCurrency(savings.perInspection, market, true)}</p>
+          <p className="text-3xl font-bold text-cyan-400 font-mono">{formatCurrency(savings.perInspection, market, true)}</p>
           <p className="text-xs text-slate-400 mt-1">{savings.percentage}% lower than diving</p>
         </div>
         <div className="section-card text-center">
           <p className="text-xs text-slate-500 uppercase tracking-wider mb-1">Annual Saving</p>
-          <p className="text-3xl font-bold text-teal-400 font-mono">{formatCurrency(savings.annual, market, true)}</p>
+          <p className="text-3xl font-bold text-cyan-400 font-mono">{formatCurrency(savings.annual, market, true)}</p>
           <p className="text-xs text-slate-400 mt-1">at {inputs.inspectionsPerYear}× inspections/yr</p>
         </div>
         <div className="section-card text-center">
@@ -90,7 +90,7 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
       )}
 
       {/* ── Tab Navigation ── */}
-      <div className="flex gap-1 bg-navy-900 border border-navy-700 rounded-lg p-1 w-fit">
+      <div className="flex gap-1 bg-slate-900 border border-slate-700 rounded-lg p-1 w-fit">
         {[
           { key: 'breakdown', icon: <Layers size={14} />, label: 'Cost Breakdown' },
           { key: 'breakeven', icon: <GitBranch size={14} />, label: 'Break-even' },
@@ -101,7 +101,7 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
             onClick={() => setActiveTab(tab.key)}
             className={`flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-medium transition-all ${
               activeTab === tab.key
-                ? 'bg-navy-700 text-teal-400'
+                ? 'bg-slate-700 text-cyan-400'
                 : 'text-slate-500 hover:text-slate-300'
             }`}
           >
@@ -121,10 +121,10 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
 
           {/* Numeric table below chart */}
           <div className="mt-6">
-            <div className="grid grid-cols-3 mb-2 pb-2 border-b border-navy-600">
+            <div className="grid grid-cols-3 mb-2 pb-2 border-b border-slate-600">
               <span className="text-xs text-slate-500">Component</span>
               <span className="text-xs text-amber-400/70 text-right">Diving</span>
-              <span className="text-xs text-teal-400/70 text-right">EyeROV</span>
+              <span className="text-xs text-cyan-400/70 text-right">EyeROV</span>
             </div>
             <MetricValue label="Crew Cost" diving={diving.crewCost} rov={rov.crewCost} market={market} />
             <MetricValue label="Mobilisation" diving={diving.mobilisation} rov={rov.mobilisation} market={market} />
@@ -141,7 +141,7 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
               <span className="text-sm font-bold font-mono text-amber-400 text-right">
                 {formatCurrency(hasDowntime ? diving.totalWithDowntime : diving.total, market)}
               </span>
-              <span className="text-sm font-bold font-mono text-teal-400 text-right">
+              <span className="text-sm font-bold font-mono text-cyan-400 text-right">
                 {formatCurrency(hasDowntime ? rov.totalWithDowntime : rov.total, market)}
               </span>
             </div>
@@ -237,7 +237,7 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <p className="text-teal-400 font-semibold mb-2">Diving Parameters</p>
+                <p className="text-cyan-400 font-semibold mb-2">Diving Parameters</p>
                 <table className="w-full text-xs">
                   <tbody className="space-y-1">
                     {[
@@ -253,7 +253,7 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
                       ['Regulatory framework', params.regulationFull],
                       ...(params.isSaturation ? [['⚠ Saturation multiplier', `${params.saturationMultiplier}× applied — depth ≥ 50m requires saturation systems`]] : []),
                     ].map(([k, v]) => (
-                      <tr key={k} className="border-b border-navy-700/40">
+                      <tr key={k} className="border-b border-slate-700/40">
                         <td className="py-1.5 pr-3 text-slate-500 align-top w-2/5">{k}</td>
                         <td className="py-1.5 text-slate-300">{v}</td>
                       </tr>
@@ -263,7 +263,7 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
               </div>
 
               <div>
-                <p className="text-teal-400 font-semibold mb-2">ROV Parameters</p>
+                <p className="text-cyan-400 font-semibold mb-2">ROV Parameters</p>
                 <table className="w-full text-xs">
                   <tbody>
                     {[
@@ -277,7 +277,7 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
                       ['HSE risk', 'No decompression exposure; lower incident profile'],
                       ['Data output', 'Sonar imaging + defect report — included'],
                     ].map(([k, v]) => (
-                      <tr key={k} className="border-b border-navy-700/40">
+                      <tr key={k} className="border-b border-slate-700/40">
                         <td className="py-1.5 pr-3 text-slate-500 align-top w-2/5">{k}</td>
                         <td className="py-1.5 text-slate-300">{v}</td>
                       </tr>
@@ -286,16 +286,16 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
                 </table>
 
                 {inputs?.includeHSERisk && (
-                  <div className="mt-4 p-3 bg-navy-900 border border-navy-700 rounded-lg">
-                    <p className="text-teal-400 font-semibold mb-1">HSE Provision Formula</p>
+                  <div className="mt-4 p-3 bg-slate-900 border border-slate-700 rounded-lg">
+                    <p className="text-cyan-400 font-semibold mb-1">HSE Provision Formula</p>
                     <p className="text-slate-400 text-xs">{params.hseFormula}</p>
                     <p className="text-slate-500 text-xs mt-1">Incident cost: $75,000 USD default (range $45K–$120K). Rate: 1.8%/diver-year reportable incidents (10× fatality rate). Toggle off to exclude.</p>
                   </div>
                 )}
-                <p className="text-teal-400 font-semibold mt-4 mb-2">NOAA NDL Reference (exact hardcoded values)</p>
+                <p className="text-cyan-400 font-semibold mt-4 mb-2">NOAA NDL Reference (exact hardcoded values)</p>
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="text-slate-500 border-b border-navy-700">
+                    <tr className="text-slate-500 border-b border-slate-700">
                       <th className="text-left pb-1">Depth</th>
                       <th className="text-left pb-1">Bottom time</th>
                       <th className="text-left pb-1">Type</th>
@@ -303,7 +303,7 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
                   </thead>
                   <tbody>
                     {BOTTOM_TIME_TABLE.filter(r => [10,15,20,25,30,35,40].includes(r.depth)).map(r => (
-                      <tr key={r.depth} className="border-b border-navy-700/40">
+                      <tr key={r.depth} className="border-b border-slate-700/40">
                         <td className="py-1 text-slate-300">{r.depth}m</td>
                         <td className="py-1 text-slate-300 font-mono">{r.bottomMinutes > 0 ? `${r.bottomMinutes} min` : 'Sat. required'}</td>
                         <td className="py-1 text-slate-500">{r.dive_type}</td>
@@ -318,7 +318,7 @@ export default function ResultsDashboard({ results, inputs, onReset, onLeadCaptu
       </div>
 
       {/* ── CTA + Reset ── */}
-      <div className="section-card bg-gradient-to-br from-teal-900/30 to-navy-900 border-teal-700/40">
+      <div className="section-card bg-gradient-to-br from-cyan-900/30 to-slate-900 border-cyan-700/40">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <p className="text-base font-semibold text-slate-100 mb-1">

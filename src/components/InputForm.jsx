@@ -79,22 +79,22 @@ export default function InputForm({ onCalculate }) {
           <React.Fragment key={i}>
             <div className="flex items-center gap-2">
               <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                i < step ? 'bg-teal-500 text-navy-950' :
-                i === step ? 'bg-teal-500 text-navy-950 ring-2 ring-teal-400 ring-offset-2 ring-offset-navy-950' :
-                'bg-navy-700 text-slate-500'
+                i < step ? 'bg-cyan-500 text-slate-950' :
+                i === step ? 'bg-cyan-500 text-slate-950 ring-2 ring-cyan-400 ring-offset-2 ring-offset-slate-950' :
+                'bg-slate-700 text-slate-500'
               }`}>{i < step ? '✓' : i + 1}</div>
-              <span className={`text-xs font-medium hidden sm:block ${i === step ? 'text-teal-400' : 'text-slate-500'}`}>
+              <span className={`text-xs font-medium hidden sm:block ${i === step ? 'text-cyan-400' : 'text-slate-500'}`}>
                 {label}
               </span>
             </div>
             {i < STEPS.length - 1 && (
-              <div className={`flex-1 h-px mx-3 ${i < step ? 'bg-teal-500' : 'bg-navy-700'}`} />
+              <div className={`flex-1 h-px mx-3 ${i < step ? 'bg-cyan-500' : 'bg-slate-700'}`} />
             )}
           </React.Fragment>
         ))}
       </div>
 
-      <div className="section-card min-h-[380px] flex flex-col">
+      <div className="section-card min-h-[380px] flex flex-col shadow-lg">
         <h2 className="text-lg font-semibold text-slate-200 mb-6">{STEPS[step]}</h2>
 
         {/* ── STEP 0: Asset & Location ── */}
@@ -109,8 +109,8 @@ export default function InputForm({ onCalculate }) {
                     onClick={() => set('assetType', asset.id)}
                     className={`flex flex-col items-center gap-1.5 p-3 rounded-lg border transition-all text-center ${
                       inputs.assetType === asset.id
-                        ? 'border-teal-500 bg-teal-500/10 text-teal-300'
-                        : 'border-navy-600 bg-navy-800 text-slate-400 hover:border-navy-500 hover:text-slate-300'
+                        ? 'border-cyan-500 bg-cyan-500/10 text-cyan-300'
+                        : 'border-slate-600 bg-slate-800 text-slate-400 hover:border-slate-500 hover:text-slate-300'
                     }`}
                   >
                     <span className="text-xl">{asset.icon}</span>
@@ -130,8 +130,8 @@ export default function InputForm({ onCalculate }) {
                     onClick={() => set('market', key)}
                     className={`flex items-center gap-3 p-3 rounded-lg border transition-all text-left ${
                       inputs.market === key
-                        ? 'border-teal-500 bg-teal-500/10 text-teal-300'
-                        : 'border-navy-600 bg-navy-800 text-slate-400 hover:border-navy-500 hover:text-slate-300'
+                        ? 'border-cyan-500 bg-cyan-500/10 text-cyan-300'
+                        : 'border-slate-600 bg-slate-800 text-slate-400 hover:border-slate-500 hover:text-slate-300'
                     }`}
                   >
                     <span className="text-lg">{m.flag}</span>
@@ -166,7 +166,7 @@ export default function InputForm({ onCalculate }) {
                 <div className={`mt-2 flex items-start gap-2 text-xs rounded-lg p-2.5 border ${
                   depth >= 50 ? 'bg-red-900/20 border-red-800/50 text-red-300' :
                   depth > 24 ? 'bg-amber-900/20 border-amber-800/50 text-amber-300' :
-                  'bg-teal-900/20 border-teal-800/50 text-teal-300'
+                  'bg-cyan-900/20 border-cyan-800/50 text-cyan-300'
                 }`}>
                   {depth >= 50 ? <AlertTriangle size={13} className="mt-0.5 shrink-0" /> : <Info size={13} className="mt-0.5 shrink-0" />}
                   <span>
@@ -203,8 +203,8 @@ export default function InputForm({ onCalculate }) {
                     onClick={() => set('inspectionsPerYear', n)}
                     className={`flex-1 py-2.5 rounded-lg border text-sm font-medium transition-all ${
                       inputs.inspectionsPerYear === n
-                        ? 'border-teal-500 bg-teal-500/10 text-teal-300'
-                        : 'border-navy-600 bg-navy-800 text-slate-400 hover:border-navy-500'
+                        ? 'border-cyan-500 bg-cyan-500/10 text-cyan-300'
+                        : 'border-slate-600 bg-slate-800 text-slate-400 hover:border-slate-500'
                     }`}
                   >
                     {n}×
@@ -214,10 +214,10 @@ export default function InputForm({ onCalculate }) {
               {errors.inspectionsPerYear && <p className="text-red-400 text-xs mt-1">{errors.inspectionsPerYear}</p>}
             </div>
 
-            <div className="flex items-center gap-3 p-3 bg-navy-800 border border-navy-600 rounded-lg">
+            <div className="flex items-center gap-3 p-3 bg-slate-800 border border-slate-700 rounded-lg">
               <button
                 onClick={() => set('includeHSERisk', !inputs.includeHSERisk)}
-                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${inputs.includeHSERisk ? 'bg-teal-500' : 'bg-navy-600'}`}
+                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${inputs.includeHSERisk ? 'bg-cyan-500' : 'bg-slate-600'}`}
               >
                 <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${inputs.includeHSERisk ? 'translate-x-5' : 'translate-x-0'}`} />
               </button>
@@ -234,10 +234,10 @@ export default function InputForm({ onCalculate }) {
           <div className="flex-1 space-y-5">
 
             {/* RaaS Toggle */}
-            <div className="flex items-center gap-3 p-3 bg-navy-800 border border-navy-600 rounded-lg">
+            <div className="flex items-center gap-3 p-3 bg-slate-800 border border-slate-700 rounded-lg">
               <button
                 onClick={() => set('isRaaS', !inputs.isRaaS)}
-                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${inputs.isRaaS ? 'bg-teal-500' : 'bg-navy-600'}`}
+                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${inputs.isRaaS ? 'bg-cyan-500' : 'bg-slate-600'}`}
               >
                 <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${inputs.isRaaS ? 'translate-x-5' : 'translate-x-0'}`} />
               </button>
@@ -298,8 +298,8 @@ export default function InputForm({ onCalculate }) {
             </div>
 
             {inputs.market && (
-              <div className="p-4 bg-navy-800 border border-navy-700 rounded-lg space-y-2">
-                <p className="text-xs font-semibold text-teal-400 uppercase tracking-wider">Market Parameters Applied</p>
+              <div className="p-4 bg-slate-800 border border-slate-700 rounded-lg space-y-2">
+                <p className="text-xs font-semibold text-cyan-400 uppercase tracking-wider">Market Parameters Applied</p>
                 <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs">
                   <span className="text-slate-500">Regulation framework</span>
                   <span className="text-slate-200 font-medium">{MARKETS[inputs.market]?.regulationFull}</span>
@@ -324,7 +324,7 @@ export default function InputForm({ onCalculate }) {
         )}
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mt-8 pt-4 border-t border-navy-700">
+        <div className="flex items-center justify-between mt-8 pt-4 border-t border-slate-700">
           <button
             onClick={back}
             disabled={step === 0}
